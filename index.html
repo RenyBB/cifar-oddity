@@ -86,17 +86,21 @@
 	    const mean_range2 = 800
 	    const sd_range2 = 100;
 	    
-	    let stimuli_range_1 = [];
+	    let stimuli_range_1a = [];
+	    let stimuli_range_1b = [];
 	    let stimuli_range_2 = [];
 	    
 	    
 	    for (let j = 0; j < 10; j++) {
-		    stimuli_range_1[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
+		    stimuli_range_1a[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
+		    stimuli_range_1b[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));		    
 		    stimuli_range_2[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2, sd_range2));
 	    };   
     	  
+	    let full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
 	    let stimulus_count = 0;
-
+	    let stream_count = 0;
+            //let stream_order_in_trial = jsPsych.randomization.sampleWithoutReplacement(block1_var, n_trials);
 	// circle
 	    let cirle_trial = {
 		    type: jsPsychPsychophysics,
@@ -105,7 +109,7 @@
 				    obj_type: 'circle',
 				    startX: 'center',
 				    startY: 'center',
-				    radius: () => {return stimuli_range_1[stimulus_count]},
+				    radius: () => {return full_trial[stream_count][stimulus_count]},
 				    line_color: 'white',
 				    line_width: 5,
 				    show_start_time: 100
@@ -122,15 +126,33 @@
 	    };
 	    
 	// stimulus train
-	    let training_procedure = {
+	    let stimulus_stream = {
 		    timeline: [cirle_trial],  //Interval1_Training, Interval2_Training,
 		    repetitions: 10,
 		    randomize: true,
+		    on_finish: function(data) {
+			    stream_count++
+		    }
 	    };
-	    
+	     
+	    let oddity_response = {
+		    type: jsPsychHtmlButtonResponse,
+		    stimulus: '<p>Which stream was the odd one out?</p>',
+		    choices: ['First', 'Second', 'Third'],
+		    on_finish: function(data) {
+			    for (let j = 0; j < 10; j++) {
+				    stimuli_range_1a[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
+				    stimuli_range_1b[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
+				    stimuli_range_2[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2, sd_range2));
+			    }; 
+		    },
+	    }
 	    
 	    jsPsych.run([
-		    training_procedure
+		    training_procedure,
+		    training_procedure,
+		    training_procedure,
+		    oddity_response
 	    ])
     </script>
 </html>
