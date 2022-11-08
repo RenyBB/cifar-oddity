@@ -96,19 +96,20 @@
 	    };   
     	  
 	    let stimulus_count = 0;
-        // circle 
-	    const circle_obj = {
-		    obj_type: 'circle',
-		    startX: 'center',
-		    startY: 'center',
-		    radius: 100,//() => {return stimuli_range_1[stimulus_count]},
-		    line_color: 'white',
-		    line_width: 5,
-	    };
+
 	// circle
-	    const cirle_trial = {
+	    let cirle_trial = {
 		    type: jsPsychPsychophysics,
-		    stimuli: [circle_obj],
+		    stimuli: [
+			    {
+			    obj_type: 'circle',
+			    startX: 'center',
+			    startY: 'center',
+			    radius: 100, //() => {return stimuli_range_1[stimulus_count]},
+			    line_color: 'white',
+			    line_width: 5
+			    }
+		    ],
 		    canvas_width: 1000,
 		    canvas_height: 800,
 		    trial_duration: 300,
