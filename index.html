@@ -123,6 +123,7 @@
 		    background_color: '#808080',
 		    on_finish: function(data) {
 			    stimulus_count++;
+			    if (stimulus_count>=9) {stimulus_count = 0}
 		    }, 
 	    };
 	    
