@@ -123,7 +123,11 @@
 		    background_color: '#808080',
 		    on_finish: function(data) {
 			    stimulus_count++;
-			    if (stimulus_count>=9) {stimulus_count = 0}
+			    if (stimulus_count>=9) {
+				    stimulus_count = 0;
+				    stream_count++;
+				    conscole_log(stream_count);
+			    }
 		    }, 
 	    };
 	    
@@ -132,10 +136,6 @@
 		    timeline: [cirle_trial],  //Interval1_Training, Interval2_Training,
 		    repetitions: 10,
 		    randomize: true,
-		    on_finish: function(data) {
-			    stream_count++;
-			    conscole_log(stream_count);
-		    }
 	    };
 	     
 	    let oddity_response = {
@@ -144,6 +144,7 @@
 		    choices: ['First', 'Second', 'Third'],
 		    on_finish: function(data) {
 			    for (let j = 0; j < 10; j++) {
+				    stream_count = 0;
 				    stimuli_range_1a[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
 				    stimuli_range_1b[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
 				    stimuli_range_2[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2, sd_range2));
