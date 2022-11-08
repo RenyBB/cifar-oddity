@@ -7,6 +7,7 @@
         <script src="https://unpkg.com/@jspsych/plugin-browser-check@1.0.1"></script>
         <script src="https://unpkg.com/@jspsych/plugin-virtual-chinrest@2.0.1"></script>
         <script src="https://unpkg.com/@jspsych/plugin-instructions"></script>
+	<script src="jspsych-psychophysics.js"></script>
         
         <style>
             html,body {
@@ -19,7 +20,7 @@
 
     <script>
         // Initialize jspsych
-        const jsPsych = initJsPsych({
+	    const jsPsych = initJsPsych({
 		    on_finish: function() {
 			    jsPsych.data.displayData();
 		    }
@@ -77,9 +78,58 @@
 		    show_clickable_nav: true,
 		    allow_backward: false
 	    };
-        
-        
+	    
+	// test stimuli for condition 1
+	    const mean_range1 = 300;
+	    const sd_range1 = 100;
+	    
+	    const mean_range2 = 800
+	    const sd_range2 = 100;
+	    
+	    let stimuli_range_1 = [];
+	    let stimuli_range_2 = [];
 	    
 	    
+	    for (let j = 0; j < 10; j++) {
+		    stimuli_range_1[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
+		    stimuli_range_2[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2, sd_range2));
+	    };   
+    	  
+	    let stimulus_count = 0;
+        // circle 
+	    const circle_obj = {
+		    obj_type: 'circle',
+		    startX: 'center',
+		    startY: 'center',
+		    radius: () => {return stimuli_range_1[stimulus_count]},
+		    line_color: 'white',
+		    line_width: 5,
+	    };
+	// circle
+	    const cirle_trial = {
+		    type: jsPsychPsychophysics,
+		    stimuli: circle_object,
+		    canvas_width: 1000,
+		    canvas_height: 800,
+		    trial_duration: 300,
+		    response_ends_trial: false,
+		    background_color: '#808080',
+		    on_finish: function(data) {
+			    stimulus_count++
+		    },    
+	    };
+	    
+	            }
+	// stimulus train
+	    let training_procedure = {
+		    timeline: [cirle_trial],  //Interval1_Training, Interval2_Training,
+		    repetitions: 10,
+		    randomize: true,
+	    };
+	    
+	    
+	    jsPsych.run([
+		    training_procedure
+	    ])
     </script>
 </html>
