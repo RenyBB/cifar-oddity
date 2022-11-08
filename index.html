@@ -102,12 +102,13 @@
 		    type: jsPsychPsychophysics,
 		    stimuli: [
 			    {
-			    obj_type: 'circle',
-			    startX: 'center',
-			    startY: 'center',
-			    radius: 100, //() => {return stimuli_range_1[stimulus_count]},
-			    line_color: 'white',
-			    line_width: 5
+				    obj_type: 'circle',
+				    startX: 'center',
+				    startY: 'center',
+				    radius: () => {return stimuli_range_1[stimulus_count]},
+				    line_color: 'white',
+				    line_width: 5,
+				    show_start_time: 100
 			    }
 		    ],
 		    canvas_width: 1000,
@@ -115,9 +116,9 @@
 		    trial_duration: 300,
 		    response_ends_trial: false,
 		    background_color: '#808080',
-		    /*on_finish: function(data) {
+		    on_finish: function(data) {
 			    stimulus_count++;
-		    },*/  
+		    }, 
 	    };
 	    
 	// stimulus train
