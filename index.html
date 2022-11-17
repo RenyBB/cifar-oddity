@@ -145,7 +145,7 @@
 	    
 	  let stream_prompt = {
 		    type: jsPsychHtmlButtonResponse,
-		    stimulus: () => {return num.toString(stream_count+1)},
+		    stimulus: () => {return (stream_count+1).toString()},
 		    choices: [],
 		    trial_duration: 500,
 	    };  
