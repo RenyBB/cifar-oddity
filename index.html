@@ -127,9 +127,9 @@
 		    on_finish: function(data) {
 			    stimulus_count++;
 			    if (stimulus_count>=9) {
+				    stream_id = order_of_streams[stream_count];
 				    stimulus_count = 0;
 				    stream_count++;
-				    stream_id = order_of_streams[stream_count];
 				    console.log(stream_count);
 				    console.log(stream_id);
 			    }
