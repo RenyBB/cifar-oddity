@@ -142,7 +142,13 @@
 		    repetitions: 10,
 		    randomize: true,
 	    };
-	     
+	    
+	  let stream_prompt = {
+		    type: jsPsychHtmlButtonResponse,
+		    stimulus: () => {return num.toString(stream_count+1)},
+		    choices: [],
+		    trial_duration: 500,
+	    };  
 	    let oddity_response = {
 		    type: jsPsychHtmlButtonResponse,
 		    stimulus: '<p>Which stream was the odd one out?</p>',
@@ -157,12 +163,15 @@
 				    stimuli_range_2[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2, sd_range2));
 			    }; 
 		    },
-	    }
+	    };
 	    
+	    let repeat_streams = {
+		    timeline: [stream_prompt,stimulus_stream],  //Interval1_Training, Interval2_Training,
+		    repetitions: 3,
+
+	    };
 	    jsPsych.run([
-		    stimulus_stream,
-		    stimulus_stream,
-		    stimulus_stream,
+		    repeat_streams,
 		    oddity_response
 	    ])
     </script>
