@@ -104,7 +104,7 @@
 	    let full_trial_str = ['range1b', 'range2', 'range1a'];
 	    let stimulus_count = 0;
 	    let stream_count = 0;
-	    let order_of_streams = jsPsych.randomization.shuffle([0, 1, 2])
+	    let order_of_streams = jsPsych.randomization.shuffle([0, 1, 2]);
 	    let stream_id = order_of_streams[stream_count];
 	    
             //let stream_order_in_trial = jsPsych.randomization.sampleWithoutReplacement(block1_var, n_trials);
@@ -129,14 +129,15 @@
 		    background_color: '#808080',
 		    on_start: function() {
 		    	    console.log(stimulus_count);
-			    console.log(full_trial[stream_id][stimulus_count]);	},
+			    console.log(full_trial[stream_id][stimulus_count]);
+		    },
 		    on_finish: function(data) {
 			    stream_id = order_of_streams[stream_count];
 			    data.stream_id = full_trial_str[stream_id];	    
-			    stimulus_count++;
+			    stimulus_count = stimulus_count+1 ;
 			    if (stimulus_count>=10) {
 				    stimulus_count = 0;
-				    stream_count++;
+				    stream_count = stream_count+1;
 			            console.log(stream_id);
 				    if (stream_count>2) {
 				    	stream_count = 0;
