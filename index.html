@@ -149,9 +149,9 @@
 	    
 	  let stream_prompt = {
 		    type: jsPsychHtmlButtonResponse,
-		    stimulus: () => {return (stream_count+1).toString()},
+		    stimulus: () => {return (stream_count+1).toString().concat(full_trial_str[stream_id])},
 		    choices: [],
-		    trial_duration: 500,
+		    trial_duration: 1500,
 	    };  
 	    let oddity_response = {
 		    type: jsPsychHtmlButtonResponse,
