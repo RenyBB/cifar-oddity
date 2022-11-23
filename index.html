@@ -101,6 +101,7 @@
 	    };   
     	  
 	    let full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
+	    let full_trial_str = ['range1b', 'range2', 'range1a'];
 	    let stimulus_count = 0;
 	    let stream_count = 0;
 	    let order_of_streams = jsPsych.randomization.shuffle([0, 1, 2])
@@ -130,11 +131,11 @@
 			    stimulus_count++;
 			    if (stimulus_count>=9) {
 				    stream_id = order_of_streams[stream_count];
+				    data.stream_id = full_trial_str(stream_id);
 				    stimulus_count = 0;
 				    stream_count++;
 				    console.log(stream_count);
 				    console.log(stream_id);
-				    data.stream_id = stream_id;
 			    }
 		    }, 
 	    };
@@ -164,6 +165,7 @@
 				    stimuli_range_1a[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
 				    stimuli_range_1b[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
 				    stimuli_range_2[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2, sd_range2));
+				    full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
 			    }; 
 		    },
 	    };
