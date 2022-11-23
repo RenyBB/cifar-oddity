@@ -127,11 +127,12 @@
 		    trial_duration: 500,
 		    response_ends_trial: false,
 		    background_color: '#808080',
+		    on_start: function() {
+		    	    console.log(stimulus_count);
+			    console.log(full_trial[stream_id][stimulus_count]);	},
 		    on_finish: function(data) {
 			    stream_id = order_of_streams[stream_count];
-			    data.stream_id = full_trial_str[stream_id];
-			    console.log(full_trial[stream_id][stimulus_count]);
-			    console.log(stimulus_count);
+			    data.stream_id = full_trial_str[stream_id];	    
 			    stimulus_count++;
 			    if (stimulus_count>=9) {
 				    stimulus_count = 0;
@@ -170,7 +171,9 @@
 				    stimuli_range_1a[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
 				    stimuli_range_1b[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
 				    stimuli_range_2[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2, sd_range2));
-				    full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
+				    if (j==9) {
+				    	full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
+				    }
 			    }; 
 		    },
 	    };
