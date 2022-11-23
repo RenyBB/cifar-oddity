@@ -128,15 +128,16 @@
 		    response_ends_trial: false,
 		    background_color: '#808080',
 		    on_finish: function(data) {
+			    stream_id = order_of_streams[stream_count];
+			    data.stream_id = full_trial_str[stream_id];
+			    console.log(full_trial[stream_id][stimulus_count]);
 			    stimulus_count++;
 			    if (stimulus_count>=9) {
-				    stream_id = order_of_streams[stream_count];
-				    data.stream_id = full_trial_str[stream_id];
 				    stimulus_count = 0;
 				    stream_count++;
 				    console.log(stream_count);
 				    console.log(stream_id);
-				    console.log(full_trial[stream_id][stimulus_count]);
+
 			    }
 		    }, 
 	    };
