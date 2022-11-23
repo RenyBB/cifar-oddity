@@ -83,11 +83,11 @@
 	    };
 	    
 	// test stimuli for condition 1
-	    const mean_range1 = 300;
-	    const sd_range1 = 100;
+	    const mean_range1 = 50;
+	    const sd_range1 = 10;
 	    
-	    const mean_range2 = 500
-	    const sd_range2 = 100;
+	    const mean_range2 = 30;
+	    const sd_range2 = 10;
 	    
 	    let stimuli_range_1a = [];
 	    let stimuli_range_1b = [];
@@ -134,6 +134,7 @@
 				    stream_count++;
 				    console.log(stream_count);
 				    console.log(stream_id);
+				    data.stream_id = stream_id;
 			    }
 		    }, 
 	    };
