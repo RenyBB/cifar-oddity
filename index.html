@@ -133,7 +133,8 @@
 		    },
 		    on_finish: function(data) {
 			    stream_id = order_of_streams[stream_count];
-			    data.stream_id = full_trial_str[stream_id];	    
+			    data.stream_id = full_trial_str[stream_id];	
+			    data.stim_radius = full_trial[stream_id][stimulus_count];
 			    stimulus_count = stimulus_count+1 ;
 			    if (stimulus_count>=10) {
 				    stimulus_count = 0;
