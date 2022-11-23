@@ -165,16 +165,15 @@
 		    choices: ['First', 'Second', 'Third'],
 		    on_finish: function(data) {
 			    for (let j = 0; j < 10; j++) {
-				    stream_count = 0;
-				    stream_id = [];
-				    order_of_streams = jsPsych.randomization.shuffle([0, 1, 2])
+				    
 				    stimuli_range_1a[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
 				    stimuli_range_1b[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
 				    stimuli_range_2[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2, sd_range2));
-				    if (j==9) {
-				    	full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
-				    }
-			    }; 
+			    };
+			    stream_count = 0;
+			    order_of_streams = jsPsych.randomization.shuffle([0, 1, 2])
+			    stream_id = order_of_streams[stream_count]
+			    full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
 		    },
 	    };
 	    
