@@ -140,7 +140,8 @@
 			    if (stimulus_count>=10) {
 				    stimulus_count = 0;
 				    stream_count = stream_count+1;
-			            console.log(stream_id);
+				    stream_id = order_of_streams[stream_count]
+			            console.log('stream count: '.concat(stream_count.toString()));
 				    if (stream_count>2) {
 				    	stream_count = 99;
 				    }
