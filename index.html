@@ -180,13 +180,15 @@
 	    let repeat_streams = {
 		    timeline: [stream_prompt,stimulus_stream],  //Interval1_Training, Interval2_Training,
 		    repetitions: 3,
-
 	    };
+	    
+	    let trial_structure = {
+		    timeline: [repeat_streams, oddity_response].
+		    repetitions: 3
+	    };
+	    
 	    jsPsych.run([
-		    repeat_streams,
-		    oddity_response,
-		    repeat_streams,
-		    oddity_response,
+		    trial_structure
 	    ])
     </script>
 </html>
