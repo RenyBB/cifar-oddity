@@ -112,8 +112,8 @@
 	    };
 	    };
     	  
-	    let full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
-	    let full_trial_str = ['range1b', 'range2', 'range1a'];
+	    let full_trial = [stimuli_range_1a, stimuli_range_1b, stimuli_range_2, ];
+	    let full_trial_str = ['same', 'same', 'odd'];
 	    let stimulus_count = 0;
 	    let stream_count = 0;
 	    let block_count = 0;
@@ -141,8 +141,9 @@
 		    response_ends_trial: false,
 		    background_color: '#808080',
 		    on_start: function() {
-		    	    console.log(mean_range1[selected_condition]);
-		    	    //console.log(stimulus_count);
+			    
+		    	    console.log(mean_range1[selected_condition].toString().concat(full_trial_str[stream_id]));
+		    	    
 			    //console.log(full_trial[stream_id][stimulus_count][block_count]);
 		    },
 		    on_finish: function(data) {
