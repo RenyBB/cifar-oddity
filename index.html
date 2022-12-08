@@ -82,23 +82,33 @@
 		    allow_backward: false
 	    };
 	    
-	// test stimuli for condition 1
-	    const mean_range1 = 50;
-	    const sd_range1 = 10;
+	// test stimuli for conditions 1 and 2
+	    let mean_range1 = [50, 100] ;
+	    let sd_range = 10;
 	    
-	    const mean_range2 = 300;
-	    const sd_range2 = 10;
-	    
-	    let stimuli_range_1a = [];
-	    let stimuli_range_1b = [];
-	    let stimuli_range_2 = [];
+	    let mean_range2 = [300, 300] 
+	    let sd_range2 = sd_range;
+	     
+
+	    let stimuli_range_1a = new Array(10);
+	    let stimuli_range_1b = new Array(10);
+	    let stimuli_range_2 = new Array(10);
 	   
-	    
-	    for (let j = 0; j < 10; j++) {
-		    stimuli_range_1a[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));
-		    stimuli_range_1b[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1, sd_range1));		    
-		    stimuli_range_2[j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2, sd_range2));
-	    };   
+	   // Loop to create 2D array using 1D array
+	   for (var i = 0; i < stimuli_range_1a.length; i++) {
+    		stimuli_range_1a[i] = new Array(2);
+		stimuli_range_1b[i] = new Array(2);
+		stimuli_range_2[i] = new Array(2);
+	   };
+   
+		    
+	   for (let i = 0; i < 10; i++) {
+	    for (let j = 0; j < 2; j++) {
+		    stimuli_range_1a[i][j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1[j], sd_range1));
+		    stimuli_range_1b[i][j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1[j], sd_range1));		    
+		    stimuli_range_2[i][j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2[j], sd_range2));
+	    };
+	    };
     	  
 	    let full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
 	    let full_trial_str = ['range1b', 'range2', 'range1a'];
@@ -182,13 +192,13 @@
 		    repetitions: 3,
 	    };
 	    
-	    let trial_structure = {
+	    let trial_structure_block1 = {
 		    timeline: [repeat_streams, oddity_response],
 		    repetitions: 3
 	    };
 	    
 	    jsPsych.run([
-		    trial_structure
+		    trial_structure_block1
 	    ])
     </script>
 </html>
