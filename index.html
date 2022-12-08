@@ -141,20 +141,21 @@
 		    response_ends_trial: false,
 		    background_color: '#808080',
 		    on_start: function() {
-		    	    console.log(stimulus_count);
-			    console.log(full_trial[stream_id][stimulus_count][block_count]);
+		    	    console.log(mean_range1[selected_condition]);
+		    	    //console.log(stimulus_count);
+			    //console.log(full_trial[stream_id][stimulus_count][block_count]);
 		    },
 		    on_finish: function(data) {
 			    data.stream_id = full_trial_str[stream_id];	
 			    data.stim_radius = full_trial[stream_id][stimulus_count][block_count];
-			    console.log(full_trial[stream_id][stimulus_count][block_count]);
+			    //console.log(full_trial[stream_id][stimulus_count][block_count]);
 			    stimulus_count = stimulus_count+1 ;
-			    console.log(stimulus_count);
+			    //console.log(stimulus_count);
 			    if (stimulus_count==10) {
 				    stimulus_count = 0;
 				    stream_count = stream_count+1;
 				    stream_id = order_of_streams[stream_count]
-			            console.log('stream count: '.concat(stream_count.toString()));
+			            //console.log('stream count: '.concat(stream_count.toString()));
 			    }
 		    }, 
 	    };
@@ -177,7 +178,7 @@
 		    stimulus: '<p>Which stream was the odd one out?</p>',
 		    choices: ['First', 'Second', 'Third'],
 		    on_finish: function(data) {
-			    for (let i = 0; i < 10; j++) {
+			    for (let i = 0; i < 10; i++) {
 				    selected_condition = order_of_conditions[block_count];
 				    stimuli_range_1a[i][block_count] = Math.round(jsPsych.randomization.sampleNormal(mean_range1[selected_condition] , sd_range1));
 				    stimuli_range_1b[i][block_count]  = Math.round(jsPsych.randomization.sampleNormal(mean_range1[selected_condition] , sd_range1));
