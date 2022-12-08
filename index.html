@@ -83,12 +83,13 @@
 	    };
 	    
 	// test stimuli for conditions 1 and 2
-	    let mean_range1 = [50, 75] ;
+	    let mean_range1 = [50, 100] ;
 	    let sd_range1 = 20;
 	    
-	    let mean_range2 = [100, 100] 
+	    let mean_range2 = [100, 50] 
 	    let sd_range2 = sd_range1;
 	     
+	    let order_of_conditions = jsPsych.randomization.shuffle([0, 1]);
 
 	    let stimuli_range_1a = new Array(10);
 	    let stimuli_range_1b = new Array(10);
@@ -101,12 +102,13 @@
 		stimuli_range_2[i] = new Array(2);
 	   };
    
-		    
-	   for (let i = 0; i < 10; i++) {
+	   let selected_condition = [];    
+	    for (let i = 0; i < 10; i++) {
 	    for (let j = 0; j < 2; j++) {
-		    stimuli_range_1a[i][j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1[j], sd_range1));
-		    stimuli_range_1b[i][j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1[j], sd_range1));		    
-		    stimuli_range_2[i][j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2[j], sd_range2));
+		    selected_condition = order_of_conditions[j];
+		    stimuli_range_1a[i][j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1[selected_condition], sd_range1));
+		    stimuli_range_1b[i][j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1[selected_condition], sd_range1));		    
+		    stimuli_range_2[i][j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2[selected_condition], sd_range2));
 	    };
 	    };
     	  
@@ -175,11 +177,11 @@
 		    stimulus: '<p>Which stream was the odd one out?</p>',
 		    choices: ['First', 'Second', 'Third'],
 		    on_finish: function(data) {
-			    for (let j = 0; i < 10; j++) {
-				    
-				    stimuli_range_1a[i][block_count] = Math.round(jsPsych.randomization.sampleNormal(mean_range1[block_count] , sd_range1));
-				    stimuli_range_1b[i][block_count]  = Math.round(jsPsych.randomization.sampleNormal(mean_range1[block_count] , sd_range1));
-				    stimuli_range_2[i][block_count]  = Math.round(jsPsych.randomization.sampleNormal(mean_range2[block_count] , sd_range2));
+			    for (let i = 0; i < 10; j++) {
+				    selected_condition = order_of_conditions[block_count];
+				    stimuli_range_1a[i][block_count] = Math.round(jsPsych.randomization.sampleNormal(mean_range1[selected_condition] , sd_range1));
+				    stimuli_range_1b[i][block_count]  = Math.round(jsPsych.randomization.sampleNormal(mean_range1[selected_condition] , sd_range1));
+				    stimuli_range_2[i][block_count]  = Math.round(jsPsych.randomization.sampleNormal(mean_range2[selected_condition] , sd_range2));
 			    };
 			    stream_count = 0;
 			    order_of_streams = jsPsych.randomization.shuffle([0, 1, 2])
