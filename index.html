@@ -198,18 +198,21 @@
 		    repetitions: 3
 	    };
 	    
-	    let oddity_response = {
+	    let end_of_block_prompt = {
 		    type: jsPsychHtmlButtonResponse,
 		    stimulus: '<p>End of block 1</p>',
 		    choices: ['continue'],
 		    on_finish: function() {
 		    	block_count++;
-		    }
+		    };
+	    };
 	    
 	    jsPsych.run([
 		    trial_structure_block,
 		    oddity_response,
+		    trial_structure_block,
+		    end_of_block_prompt,
 		    trial_structure_block
-	    ])
+	    ]);
     </script>
 </html>
