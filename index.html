@@ -83,10 +83,10 @@
 	    };
 	    
 	// test stimuli for conditions 1 and 2
-	    let mean_range1 = [50, 100] ;
-	    let sd_range1 = 10;
+	    let mean_range1 = [50, 75] ;
+	    let sd_range1 = 20;
 	    
-	    let mean_range2 = [300, 300] 
+	    let mean_range2 = [100, 100] 
 	    let sd_range2 = sd_range1;
 	     
 
@@ -135,7 +135,7 @@
 		    ],
 		    canvas_width: 1000,
 		    canvas_height: 800,
-		    trial_duration: 500,
+		    trial_duration: 150,
 		    response_ends_trial: false,
 		    background_color: '#808080',
 		    on_start: function() {
@@ -195,7 +195,7 @@
 	    
 	    let trial_structure_block = {
 		    timeline: [repeat_streams, oddity_response],
-		    repetitions: 3
+		    repetitions: 10
 	    };
 	    
 	    let end_of_block_prompt = {
