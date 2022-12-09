@@ -103,9 +103,9 @@
 	    let sd_range2 = sd_range1;
 	     
 
-	    //let stimuli_range_1a = new Array(10);
-	    //let stimuli_range_1b = new Array(10);
-	    //let stimuli_range_2 = new Array(10);
+	    let stimuli_range_1a = new Array(10);
+	    let stimuli_range_1b = new Array(10);
+	    let stimuli_range_2 = new Array(10);
 	   
 	   // Loop to create 2D array using 1D array
 	   /*for (var i = 0; i < stimuli_range_1a.length; i++) {
@@ -137,6 +137,9 @@
 		    stimulus: '<p>Start of new block</p>',
 		    choices: ['continue'],
 		    on_finish: function() {
+			        stimuli_range_1a = new Array(10);
+	    			stimuli_range_1b = new Array(10);
+	    			stimuli_range_2 = new Array(10);
 		    	 for (let i = 0; i < 10; i++) {
 	
 		    		stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), sd_range1));
