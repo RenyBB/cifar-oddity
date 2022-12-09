@@ -196,8 +196,7 @@
 	    let stimulus_stream = {
 		    timeline: [cirle_trial],  //Interval1_Training, Interval2_Training,
 		    repetitions: 10,
-		    randomize: true,
-	    };
+            };
 	    
 	  let stream_prompt = {
 		    type: jsPsychHtmlButtonResponse,
@@ -245,7 +244,7 @@
 	    let block_structure = {
 		    tiimeline: [trial_structure_block, end_of_block_prompt],
 		    timeline_variables: means_per_block,
-		    randomize: true,
+		    randomize_order: true,
 		    repetitions: 2
 	    
 	    }
