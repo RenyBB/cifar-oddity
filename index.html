@@ -185,7 +185,7 @@
 		    stimulus: '<p>Which stream was the odd one out?</p>',
 		    choices: ['First', 'Second', 'Third'],
 		    on_finish: function(data) {
-			    for (let i = 0; i < 10; j++) {
+			    for (let i = 0; i < 10; i++) {
 				    
 				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range1));
 				    stimuli_range_1b[i]  = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range1));
