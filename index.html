@@ -163,7 +163,7 @@
 				    obj_type: 'circle',
 				    startX: 'center',
 				    startY: 'center',
-				    radius: () => {return full_trial[stream_id][stimulus_count][block_count]},
+				    radius: () => {return full_trial[stream_id][stimulus_count]},
 				    line_color: 'white',
 				    line_width: 5,
 				    show_start_time: 100
@@ -180,8 +180,8 @@
 		    },
 		    on_finish: function(data) {
 			    data.stream_id = full_trial_str[stream_id];	
-			    data.stim_radius = full_trial[stream_id][stimulus_count][block_count];
-			    console.log(full_trial[stream_id][stimulus_count][block_count]);
+			    data.stim_radius = full_trial[stream_id][stimulus_count];
+			    console.log(full_trial[stream_id][stimulus_count]);
 			    stimulus_count = stimulus_count+1 ;
 			    console.log(stimulus_count);
 			    if (stimulus_count==10) {
