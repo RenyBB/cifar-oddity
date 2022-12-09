@@ -134,7 +134,7 @@
             // start of block
 	    	    let start_of_block_prompt = {
 		    type: jsPsychHtmlButtonResponse,
-		    stimulus: '<p>Start of new block</p>',
+		    stimulus: () => '<p>Start of new block</p>'.concat(jsPsych.timelineVariable('same_mean').toString()),
 		    choices: ['continue'],
 		    on_finish: function(data) {
 			        stimuli_range_1a = new Array(10);
