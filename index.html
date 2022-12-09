@@ -245,14 +245,14 @@
 	    };
 	    
 	    let block_structure = {
-		    tiimeline: [start_of_block_prompt , trial_structure_block, end_of_block_prompt],
+		    tiimeline: [start_of_block_prompt], // trial_structure_block, end_of_block_prompt
 		    timeline_variables: means_per_block,
 		    randomize_order: true,
 		    repetitions: 2
 	    
 	    }
 	    jsPsych.run([
-		    start_of_block_prompt 
+		    block_structure 
 	    ]);
     </script>
 </html>
