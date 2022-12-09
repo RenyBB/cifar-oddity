@@ -83,42 +83,77 @@
 	    };
 	    
 	// test stimuli for conditions 1 and 2
-	    let mean_range1 = [50, 75] ;
+	    
+	     //let n_blocks = 4;
+	     //let n_mean_per_block = 2;
+	     //let mean_per_block = Array(n_blocks).fill().map(() => Array(n_mean_per_block));
+	     
+	     //mean_per_block[0] = [50, 90];
+	     //mean_per_block[1] = [90, 50];
+	     //mean_per_block[2] = [120, 150];
+	     //mean_per_block[3] = [150, 120];
+	    
+	    let means_per_block = [
+		{same_mean: 50, odd_mean: 90},
+		{same_mean:90, odd_mean: 50} ]
+	    //let mean_range1 = [50, 75] ;
 	    let sd_range1 = 20;
 	    
-	    let mean_range2 = [100, 100] 
+	    //let mean_range2 = [100, 100] 
 	    let sd_range2 = sd_range1;
 	     
 
-	    let stimuli_range_1a = new Array(10);
-	    let stimuli_range_1b = new Array(10);
-	    let stimuli_range_2 = new Array(10);
+	    //let stimuli_range_1a = new Array(10);
+	    //let stimuli_range_1b = new Array(10);
+	    //let stimuli_range_2 = new Array(10);
 	   
 	   // Loop to create 2D array using 1D array
-	   for (var i = 0; i < stimuli_range_1a.length; i++) {
+	   /*for (var i = 0; i < stimuli_range_1a.length; i++) {
     		stimuli_range_1a[i] = new Array(2);
 		stimuli_range_1b[i] = new Array(2);
 		stimuli_range_2[i] = new Array(2);
-	   };
+	   };*/
    
 		    
-	   for (let i = 0; i < 10; i++) {
+	   /*for (let i = 0; i < 10; i++) {
 	    for (let j = 0; j < 2; j++) {
 		    stimuli_range_1a[i][j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1[j], sd_range1));
 		    stimuli_range_1b[i][j] = Math.round(jsPsych.randomization.sampleNormal(mean_range1[j], sd_range1));		    
 		    stimuli_range_2[i][j] = Math.round(jsPsych.randomization.sampleNormal(mean_range2[j], sd_range2));
 	    };
-	    };
+	    };*/
     	  
-	    let full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
+	    //let full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
 	    let full_trial_str = ['range1b', 'range2', 'range1a'];
-	    let stimulus_count = 0;
-	    let stream_count = 0;
+	    //let stimulus_count = 0;
+	    //let stream_count = 0;
 	    let block_count = 0;
-	    let order_of_streams = jsPsych.randomization.shuffle([0, 1, 2]);
-	    let stream_id = order_of_streams[stream_count];
+	    //let order_of_streams = jsPsych.randomization.shuffle([0, 1, 2]);
+	    //let stream_id = order_of_streams[stream_count];
 	    
-            //let stream_order_in_trial = jsPsych.randomization.sampleWithoutReplacement(block1_var, n_trials);
+            // start of block
+	    	    let start_of_block_prompt = {
+		    type: jsPsychHtmlButtonResponse,
+		    stimulus: '<p>Start of new block</p>',
+		    choices: ['continue'],
+		    on_finish: function() {
+		    	 for (let i = 0; i < 10; i++) {
+	
+		    		stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), sd_range1));
+		    		stimuli_range_1b[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), sd_range1));		    
+		    		stimuli_range_2[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('odd_mean'), sd_range2));
+	  
+	    		};
+			   
+			   let stimulus_count = 0;
+			     let stream_count = 0;
+			    let order_of_streams = jsPsych.randomization.shuffle([0, 1, 2]);
+	    let stream_id = order_of_streams[stream_count];
+			     let full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
+		    },
+	    };
+	    
+	    //let stream_order_in_trial = jsPsych.randomization.sampleWithoutReplacement(block1_var, n_trials);
 	// circle
 	    let cirle_trial = {
 		    type: jsPsychPsychophysics,
@@ -175,11 +210,11 @@
 		    stimulus: '<p>Which stream was the odd one out?</p>',
 		    choices: ['First', 'Second', 'Third'],
 		    on_finish: function(data) {
-			    for (let j = 0; i < 10; j++) {
+			    for (let i = 0; i < 10; j++) {
 				    
-				    stimuli_range_1a[i][block_count] = Math.round(jsPsych.randomization.sampleNormal(mean_range1[block_count] , sd_range1));
-				    stimuli_range_1b[i][block_count]  = Math.round(jsPsych.randomization.sampleNormal(mean_range1[block_count] , sd_range1));
-				    stimuli_range_2[i][block_count]  = Math.round(jsPsych.randomization.sampleNormal(mean_range2[block_count] , sd_range2));
+				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range1));
+				    stimuli_range_1b[i]  = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range1));
+				    stimuli_range_2[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('odd_mean'), sd_range2));
 			    };
 			    stream_count = 0;
 			    order_of_streams = jsPsych.randomization.shuffle([0, 1, 2])
@@ -207,11 +242,15 @@
 		    },
 	    };
 	    
+	    let block_structure = {
+		    tiimeline: [trial_structure_block, end_of_block_prompt],
+		    timeline_variables: means_per_block,
+		    randomize: true,
+		    repetitions: 2
+	    
+	    }
 	    jsPsych.run([
-		    trial_structure_block,
-		    end_of_block_prompt,
-		    trial_structure_block,
-		    end_of_block_prompt,
+		    block_structure
 	    ]);
     </script>
 </html>
