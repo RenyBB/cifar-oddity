@@ -136,11 +136,11 @@
 		    type: jsPsychHtmlButtonResponse,
 		    stimulus: '<p>Start of new block</p>',
 		    choices: ['continue'],
-		    on_finish: function() {
+		    on_finish: function(data) {
 			        stimuli_range_1a = new Array(10);
 	    			stimuli_range_1b = new Array(10);
 	    			stimuli_range_2 = new Array(10);
-		    	 for (let i = 0; i < 10; i++) {
+		    	 	for (let i = 0; i < 10; i++) {
 	
 		    		stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), sd_range1));
 		    		stimuli_range_1b[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), sd_range1));		    
