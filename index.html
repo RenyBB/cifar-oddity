@@ -86,8 +86,10 @@
 	// test stimuli 
 
 	    let means_per_block = [
-		{same_mean: 50, odd_mean: 100},
-		{same_mean: 100, odd_mean: 50} ]
+		{same_mean: 120, odd_mean: 120},
+		{same_mean: 150, odd_mean: 150},
+		{same_mean: 110, odd_mean: 160},
+		{same_mean: 160, odd_mean: 110}]
 	
 	    let sd_range1 = 20;
 	    
@@ -217,7 +219,7 @@
         step: 1,
         labels: ['50% - random guess', '100% - complete confidence'],
         button_label: "Submit response",
-        prompt: ['How confident are you that your response was correct?'], // <br>The selected duration will appear above the slider.<br>Click <b>Submit response</b> to save your selected response and continue.
+        prompt: ['<p>How confident are you that your response was correct?</p>'], // <br>The selected duration will appear above the slider.<br>Click <b>Submit response</b> to save your selected response and continue.
 
     };
 	    
