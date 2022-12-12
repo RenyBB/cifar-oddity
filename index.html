@@ -9,6 +9,7 @@
         <script src="https://unpkg.com/@jspsych/plugin-instructions"></script>
   	<script src="https://unpkg.com/@jspsych/plugin-html-button-response"></script>
 	<script src="jspsych-psychophysics.js"></script>
+	<script src="plugin-html-slider-response_display_slider_value.js"></script>
         
 	<link rel="stylesheet" href="https://unpkg.com/jspsych@7.0.0/css/jspsych.css">
 	    
@@ -197,6 +198,28 @@
 			    full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
 		    },
 	    };
+	    
+	        // Confidence response
+	    
+    const max_confidence = 100;
+    const min_confidence = 50;
+    const all_integer_confidence = Array.from({ length: max_confidence - min_confidence + 1 }, (_, i) => i + min_duration);
+	    
+    var confidencen_response = {
+        type: jsPsychHtmlSliderResponseDisplayValue,
+        stimulus: '',
+        require_movement: true,
+        required: true,
+        min: min_confidence,
+        max: max_confidence,
+        slider_width: 800,
+        slider_start: function () { return jsPsych.randomization.sampleWithoutReplacement(all_integer_confidence, 1)[0] },
+        step: 1,
+        labels: ['50% - random guess', '100% - complete confidence'],
+        button_label: "Submit response",
+        prompt: ['How confident are you that your response was correct?'], // <br>The selected duration will appear above the slider.<br>Click <b>Submit response</b> to save your selected response and continue.
+
+    };
 	    
 	    let repeat_streams = {
 		    timeline: [stream_prompt,stimulus_stream],  //Interval1_Training, Interval2_Training,
