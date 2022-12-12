@@ -163,7 +163,7 @@ var jsPsychHtmlSliderResponseDisplayValue = (function (jspsych) {
           display_element.querySelector('#jspsych-html-slider-response-response').addEventListener("input", function () { //event used to be click
               let selected_resp = display_element.querySelector('#jspsych-html-slider-response-response').valueAsNumber; 
               selected_resp = selected_resp.toString();
-              display_element.querySelector('#jspsych-html-slider-response-stimulus').textContent = selected_resp.concat(" seconds");//display_element.querySelector('#jspsych-html-slider-response-response').valueAsNumber;
+              display_element.querySelector('#jspsych-html-slider-response-stimulus').textContent = selected_resp.concat("%");//display_element.querySelector('#jspsych-html-slider-response-response').valueAsNumber;
           });
           if (trial.require_movement) {
               const enable_button = () => {
