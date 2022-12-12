@@ -181,7 +181,7 @@
 		    type: jsPsychHtmlButtonResponse,
 		    stimulus: () => {return 'Stream '.concat((stream_count+1).toString())}, //{return (stream_count+1).toString().concat(full_trial_str[stream_id])}
 		    choices: [],
-		    trial_duration: 1500,
+		    trial_duration: 1000,
 	    };  
 	    let oddity_response = {
 		    type: jsPsychHtmlButtonResponse,
@@ -236,7 +236,7 @@
 	    
 	    let end_of_block_prompt = {
 		    type: jsPsychHtmlButtonResponse,
-		    stimulus: () =>  '<p>End of block 1 '.concat(block_count++.toString()).concat('.<p>'),
+		    stimulus: () =>  '<p>End of block '.concat(block_count+1).concat('.</p>'),
 		    choices: ['continue'],
 		    on_finish: function() {
 		    	block_count++;
