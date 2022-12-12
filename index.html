@@ -203,7 +203,7 @@
 	    
     const max_confidence = 100;
     const min_confidence = 50;
-    const all_integer_confidence = Array.from({ length: max_confidence - min_confidence + 1 }, (_, i) => i + min_duration);
+    const all_integer_confidence = Array.from({ length: max_confidence - min_confidence + 1 }, (_, i) => i + min_confidence);
 	    
     var confidence_response = {
         type: jsPsychHtmlSliderResponseDisplayValue,
