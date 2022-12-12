@@ -189,6 +189,8 @@
 		    choices: ['First', 'Second', 'Third'],
 		    on_finish: function(data) {
 			    data.correct_response = order_of_streams.indexOf(1);
+			    console.log(order_of_streams);
+			    console.log(order_of_streams.indexOf(1));
 			    for (let i = 0; i < 10; i++) {
 				    
 				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range1));
