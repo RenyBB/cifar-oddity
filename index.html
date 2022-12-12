@@ -205,7 +205,7 @@
     const min_confidence = 50;
     const all_integer_confidence = Array.from({ length: max_confidence - min_confidence + 1 }, (_, i) => i + min_duration);
 	    
-    var confidencen_response = {
+    var confidence_response = {
         type: jsPsychHtmlSliderResponseDisplayValue,
         stimulus: '',
         require_movement: true,
@@ -227,7 +227,7 @@
 	    };
 	    
 	    let trial_structure_block = {
-		    timeline: [repeat_streams, oddity_response],
+		    timeline: [repeat_streams, oddity_response, confidence_response],
 		    repetitions: 3
 	    };
 	    
