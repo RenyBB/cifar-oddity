@@ -86,8 +86,8 @@
 	// test stimuli 
 
 	    let means_per_block = [
-		{same_mean: 120, odd_mean: 120},
-		{same_mean: 150, odd_mean: 150},
+		{same_mean: 120, odd_mean: 150},
+		{same_mean: 150, odd_mean: 120},
 		{same_mean: 110, odd_mean: 160},
 		{same_mean: 160, odd_mean: 110}]
 	
@@ -112,7 +112,7 @@
             // start of block
 	    	    let start_of_block_prompt = {
 		    type: jsPsychHtmlButtonResponse,
-		    stimulus: () => '<p>Start of new block</p>'.concat(jsPsych.timelineVariable('same_mean').toString()),
+		    stimulus: '<p>Start new block</p>',
 		    choices: ['continue'],
 		    on_finish: function(data) {
 			    stimuli_range_1a = [];
@@ -188,6 +188,7 @@
 		    stimulus: '<p>Which stream was the odd one out?</p>',
 		    choices: ['First', 'Second', 'Third'],
 		    on_finish: function(data) {
+			    data.correct_response = order_of_streams.indexOf(1);
 			    for (let i = 0; i < 10; i++) {
 				    
 				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range1));
@@ -235,7 +236,7 @@
 	    
 	    let end_of_block_prompt = {
 		    type: jsPsychHtmlButtonResponse,
-		    stimulus: '<p>End of block 1</p>',
+		    stimulus: () =>  '<p>End of block 1 '.concat(block_count++.toString()).concat('.<p>'),
 		    choices: ['continue'],
 		    on_finish: function() {
 		    	block_count++;
