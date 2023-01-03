@@ -91,18 +91,14 @@
 		{same_mean: 110, odd_mean: 160},
 		{same_mean: 160, odd_mean: 110}]
 	
-	    let sd_range1 = 20;
-	    
-
-	    let sd_range2 = sd_range1;
-	     
+	    let sd_range = 20;
+    
 
 	    let stimuli_range_1a = new Array(10);
 	    let stimuli_range_1b = new Array(10);
 	    let stimuli_range_2 = new Array(10);
 
-	    //let full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
-	    let full_trial_str = ['range1b', 'range2', 'range1a'];
+	    let full_trial_str = ['range1a', 'range1b', 'range2'];
 	    let stimulus_count = 0;
 	    let stream_count = 0;
 	    let block_count = 0;
@@ -120,15 +116,15 @@
 			    stimuli_range_2 = [];
 			    full_trial = [];
 			    for (let i = 0; i < 10; i++) {
-				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), sd_range1));
-				    stimuli_range_1b[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), sd_range1));		    
-				    stimuli_range_2[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('odd_mean'), sd_range2));
+				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), sd_range));
+				    stimuli_range_1b[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), sd_range));		    
+				    stimuli_range_2[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('odd_mean'), sd_range));
 			    };
 			    stimulus_count = 0;
 			    stream_count = 0;
 			    order_of_streams = jsPsych.randomization.shuffle([0, 1, 2]);
 			    stream_id = order_of_streams[stream_count];
-			    full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
+			    full_trial = [stimuli_range_1a, stimuli_range_1b, stimuli_range_2];
 		    },
 	    };
 	    
@@ -188,9 +184,9 @@
 		    stimulus: '<p>Which stream was the odd one out?</p>',
 		    choices: ['First', 'Second', 'Third'],
 		    on_finish: function(data) {
-			    data.correct_response = order_of_streams.indexOf(1);
+			    data.correct_response = order_of_streams.indexOf(2);
 			    console.log(order_of_streams);
-			    console.log(order_of_streams.indexOf(1));
+			    console.log(order_of_streams.indexOf(2));
 			    for (let i = 0; i < 10; i++) {
 				    
 				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range1));
@@ -200,7 +196,7 @@
 			    stream_count = 0;
 			    order_of_streams = jsPsych.randomization.shuffle([0, 1, 2])
 			    stream_id = order_of_streams[stream_count]
-			    full_trial = [stimuli_range_1b, stimuli_range_2, stimuli_range_1a];
+			    full_trial = [stimuli_range_1a, stimuli_range_1b, stimuli_range_2];
 		    },
 	    };
 	    
