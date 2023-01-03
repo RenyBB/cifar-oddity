@@ -189,9 +189,9 @@
 			    console.log(order_of_streams.indexOf(2));
 			    for (let i = 0; i < 10; i++) {
 				    
-				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range1));
-				    stimuli_range_1b[i]  = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range1));
-				    stimuli_range_2[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('odd_mean'), sd_range2));
+				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range));
+				    stimuli_range_1b[i]  = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range));
+				    stimuli_range_2[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('odd_mean'), sd_range));
 			    };
 			    stream_count = 0;
 			    order_of_streams = jsPsych.randomization.shuffle([0, 1, 2])
