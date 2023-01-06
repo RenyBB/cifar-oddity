@@ -86,13 +86,10 @@
 	// test stimuli 
 
 	    let means_per_block = [
-		{same_mean: 120, odd_mean: 150},
-		{same_mean: 150, odd_mean: 120},
-		{same_mean: 110, odd_mean: 160},
-		{same_mean: 160, odd_mean: 110}]
-	
-	    let sd_range = 20;
-    
+		{same_mean: 120, odd_mean: 150, sd_range: 20},
+		{same_mean: 150, odd_mean: 120, sd_range: 20},
+		{same_mean: 110, odd_mean: 160, sd_range: 20},
+		{same_mean: 160, odd_mean: 110, sd_range: 20}]  
 
 	    let stimuli_range_1a = new Array(10);
 	    let stimuli_range_1b = new Array(10);
@@ -116,9 +113,9 @@
 			    stimuli_range_2 = [];
 			    full_trial = [];
 			    for (let i = 0; i < 10; i++) {
-				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), sd_range));
-				    stimuli_range_1b[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), sd_range));		    
-				    stimuli_range_2[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('odd_mean'), sd_range));
+				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), jsPsych.timelineVariable('sd_range')));
+				    stimuli_range_1b[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean'), jsPsych.timelineVariable('sd_range')));		    
+				    stimuli_range_2[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('odd_mean'), jsPsych.timelineVariable('sd_range')));
 			    };
 			    stimulus_count = 0;
 			    stream_count = 0;
@@ -189,9 +186,9 @@
 			    console.log(order_of_streams.indexOf(2));
 			    for (let i = 0; i < 10; i++) {
 				    
-				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range));
-				    stimuli_range_1b[i]  = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , sd_range));
-				    stimuli_range_2[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('odd_mean'), sd_range));
+				    stimuli_range_1a[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , jsPsych.timelineVariable('sd_range')));
+				    stimuli_range_1b[i]  = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('same_mean') , jsPsych.timelineVariable('sd_range')));
+				    stimuli_range_2[i] = Math.round(jsPsych.randomization.sampleNormal(jsPsych.timelineVariable('odd_mean'), jsPsych.timelineVariable('sd_range'))); 
 			    };
 			    stream_count = 0;
 			    order_of_streams = jsPsych.randomization.shuffle([0, 1, 2])
